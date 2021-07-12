@@ -1,0 +1,222 @@
+<robot name="DexArm_unofficial">
+  <!-- 
+    Components: 
+      - B_Fix       L31
+      - F_Rot       L44
+      - In_1        L67
+      - In_2        L114
+      - Out_1       L161
+      - Out_2       L185
+      - Join        L90
+      - EE          L137
+    Modules: (Go to line and uncomment your choice)
+      - Suction     L209
+      - Gripper     L234
+
+    Joints:
+      Bases:
+        - B_Fix -> B_Rot   [-110 deg, 110deg]           L59
+      Inner Arms:
+        - B_Rot -> In_1    [0, pi/2]                    L81
+        - In_1  -> Join    [mimic -1 * B_Rot -> In_1]   L104
+        - Join  -> In_2     [-0.6, 1.2]                 L128
+        - In_2  -> EE      [mimic -1 * Join  -> In_2]   L151
+      Outer Arms:
+        - Join  -> Out_1   [mimic  1 * B_Rot -> In_1]   L175
+        - Join  -> Out_2   [mimic  1 * Join  -> In_2]   L199
+  -->
+
+  <!-- Anchor and rotating base -->
+  <link name="B_Fix">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/00-B_Fix.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/00-B_Fix.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="B_Rot">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/01-B_Rot.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/01-B_Rot.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bases" type="revolute">
+    <parent link="B_Fix" />
+    <child link="B_Rot" />
+    <limit effort="30" lower="-1.91986" upper="1.91986" velocity="1.74533" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- Base to inner Arm 1 -->
+  <link name="In_1">
+    <visual>
+      <origin xyz="0 0.022 -0.127" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./STL/02-In_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0.022 -0.127" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/02-In_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="B_Rot->In_1" type="revolute">
+    <parent link="B_Rot" />
+    <child link="In_1" />
+    <limit effort="30" lower="0" upper="1.57" velocity="1.74533" />
+    <origin xyz="0 -0.02 0.13" rpy="0 0 0"/>
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!-- Inner Arm 1 to Join -->
+  <link name="Join">
+    <visual>
+      <origin xyz="0 0.0332 -0.277" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./STL/03-Join.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0332 -0.277" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/03-Join.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="In_1->Join" type="revolute">
+    <parent link="In_1" />
+    <child link="Join" />
+    <limit effort="30" lower="-1.57" upper="0" velocity="1.74533" />
+    <origin xyz="0 -0.0112 0.15" rpy="0 0 0"/>
+    <axis xyz="1 0 0" />
+    <mimic joint="B_Rot->In_1" multiplier="-1" offset="0" />
+  </joint>
+
+  <!-- Join to Inner Arm 2 -->
+  <link name="In_2">
+    <visual>
+      <origin xyz="0 0.034 -0.276" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/04-In_2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0.033 -0.279" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./STL/04-In_2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Join->In_2" type="revolute">
+    <parent link="Join" />
+    <child link="In_2" />
+    <limit effort="30" lower="-0.6" upper="1.2" velocity="1.74533" />
+    <origin xyz="0.0 -0.0003 -0.0003" rpy="0 0 0"/>
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!-- Inner arm 2 to end effector -->
+  <link name="EE">
+    <visual>
+      <origin xyz="0.0 0.172 -0.218" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./STL/05-EE.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.172 -0.215" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./STL/05-EE.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="In_2->EE" type="revolute">
+    <parent link="In_2" />
+    <child link="EE" />
+    <limit effort="30" lower="-0.6" upper="1.2" velocity="1.74533" />
+    <origin xyz="0 -0.138 -0.058" rpy="0 0 0"/>
+    <axis xyz="1 0 0" />
+    <mimic joint="Join->In_2" multiplier="-1" offset="0" />
+  </joint>
+
+                    <!--TRANSMISSION-->
+
+<transmission name ="Trans_B_rot">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="bases">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="B_rot_Motor">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name ="Trans_In_1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="B_rot->In_1">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Motor_In_1">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name ="Trans_Join">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="In_1->Join">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Motor_Join">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name ="Trans_In_2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Join->In_2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Motor_In_2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name ="Trans_EE">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="In_2->EE">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Motor_EE">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+</gazebo>
+</robot>
