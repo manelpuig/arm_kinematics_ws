@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: custom_robotic_arm
+    relative_path: urdf/simple_arm.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/luqman_bot.srdf
+  CONFIG:
+    author_name: Sergio
+    author_email: sergio.venteo2222@gmail.com
+    generated_timestamp: 1626164979
