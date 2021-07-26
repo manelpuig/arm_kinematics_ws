@@ -1,5 +1,5 @@
 arm_controller:
-  type: "position_controllers/JointTrajectoryController"
+  type: position_controllers/JointTrajectoryController
   joints:
     - One_joint
     - Two_joint
