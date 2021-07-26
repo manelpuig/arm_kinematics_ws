@@ -1,12 +1,8 @@
 <launch>
+  <arg name="rvizconfig" default="$(find custom_robotic_arm)/rviz/urdf.rviz" />
+  <param name="robot_description" textfile='$(find custom_robotic_arm)/urdf/simple_arm.urdf'/>
 
-    <arg name="model" default='$(find custom_robotic_arm)/urdf/simple_arm.urdf'/>
-    <arg name="rvizconfig" default="$(find custom_robotic_arm)/rviz/urdf.rviz" />
-  
-    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
-  
-    <node name="jsp_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
-  
-  </launch>
+  <node name="jsp_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

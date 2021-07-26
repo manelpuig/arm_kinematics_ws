@@ -1,6 +1,5 @@
 controller_list:
   - name: fake_Arm_controller
-    type: $(arg execution_type)
     joints:
       - One_joint
       - Two_joint

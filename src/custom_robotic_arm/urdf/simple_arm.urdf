@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="luqman_bot">
+<robot name="rubot_arm">
   <link name="world"/>
     <link name="base_link">
         <visual>
@@ -11,18 +11,18 @@
             </material>
             <origin rpy="0 0 0" xyz="0 0 0.025"/>
         </visual>
-    <collision>
-        <geometry>
-            <cylinder length="0.05" radius="0.1"/>
-        </geometry>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.1"/>
+            </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0.025"/>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
             <origin rpy="0 0 0" xyz="0 0 0.025"/>
-    </collision>
-    <inertial>
-        <mass value="1.0"/>
-        <origin rpy="0 0 0" xyz="0 0 0.025"/>
-        <inertia ixx="0.0027" iyy="0.0027" izz="0.005" ixy="0" ixz="0" iyz="0"/>
-    </inertial>
-    </link>
+            <inertia ixx="0.0027" iyy="0.0027" izz="0.005" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+        </link>
   <joint name="fixed" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
@@ -144,7 +144,7 @@ ixy="0" ixz="0" iyz="0"/>
 <transmission name ="Trans_1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="One_joint">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor1">
         <hardwareInterface>PositionJointInterface</hardwareInterface>
@@ -156,7 +156,7 @@ ixy="0" ixz="0" iyz="0"/>
 <transmission name ="Trans_2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="Two_joint">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor2">
         <hardwareInterface>PositionJointInterface</hardwareInterface>
@@ -168,7 +168,7 @@ ixy="0" ixz="0" iyz="0"/>
 <transmission name ="Trans_3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="Three_joint">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor3">
         <hardwareInterface>PositionJointInterface</hardwareInterface>
@@ -181,7 +181,7 @@ ixy="0" ixz="0" iyz="0"/>
 <transmission name="Trans_4">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="Four_joint">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor4">
         <hardwareInterface>PositionJointInterface</hardwareInterface>
@@ -189,8 +189,7 @@ ixy="0" ixz="0" iyz="0"/>
     </actuator>
 </transmission>
 
-
-
+<!--Gazebo plugins-->
 <gazebo>
     <plugin name="control" filename="libgazebo_ros_control.so"/>
 </gazebo>

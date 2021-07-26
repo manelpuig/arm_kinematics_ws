@@ -4,8 +4,8 @@ moveit_setup_assistant_config:
     relative_path: urdf/simple_arm.urdf
     xacro_args: ""
   SRDF:
-    relative_path: config/luqman_bot.srdf
+    relative_path: config/rubot_arm.srdf
   CONFIG:
-    author_name: Sergio
-    author_email: sergio.venteo2222@gmail.com
-    generated_timestamp: 1626164979
+    author_name: Manel Puig i Vidal
+    author_email: manel.puig@ub.edu
+    generated_timestamp: 1627297352
