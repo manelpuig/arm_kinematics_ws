@@ -1,7 +1,7 @@
 # Simulation settings for using moveit_sim_controllers
 moveit_sim_hw_interface:
-  joint_model_group: Arm
-  joint_model_group_pose: Home
+  joint_model_group: custom_arm
+  joint_model_group_pose: home
 # Settings for ros_control_boilerplate control loop
 generic_hw_control_loop:
   loop_hz: 300
@@ -20,12 +20,33 @@ joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
 controller_list:
-  - name: /vel_based_pos_traj_controller #or /pos_based_pos_traj_controller
-    action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
-    default: true
+  - name: arm_position_controller
+    action_ns: position_controllers
+    default: True
+    type: JointPositionController
     joints:
       - One_joint
       - Two_joint
       - Three_joint
       - Four_joint
+    gains:
+    One_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    Two_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    Three_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    Four_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1

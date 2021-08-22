@@ -1,0 +1,10 @@
+controller_list:
+  - name: fake_custom_arm_controller
+    joints:
+      - One_joint
+      - Two_joint
+      - Three_joint
+      - Four_joint
+initial:  # Define initial robot poses.
+  - group: custom_arm
+    pose: home
