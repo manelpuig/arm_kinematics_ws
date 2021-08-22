@@ -147,7 +147,7 @@ ixy="0" ixz="0" iyz="0"/>
         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor1">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
     </actuator>
 </transmission>
@@ -159,7 +159,7 @@ ixy="0" ixz="0" iyz="0"/>
         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor2">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
     </actuator>
 </transmission>
@@ -171,7 +171,7 @@ ixy="0" ixz="0" iyz="0"/>
         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor3">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
     </actuator>
 </transmission>
@@ -184,20 +184,23 @@ ixy="0" ixz="0" iyz="0"/>
         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="Motor4">
-        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
     </actuator>
 </transmission>
 
 <!--Gazebo plugins-->
 <gazebo>
-    <plugin name="control" filename="libgazebo_ros_control.so"/>
+    <plugin name="control" filename="libgazebo_ros_control.so">
+        <robotNamespace></robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>false</legacyModeNS>
+    </plugin>
 </gazebo>
-<gazebo>
+<!--<gazebo>
 <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
         <jointName>One_joint, Two_joint, Three_joint, Four_joint</jointName>
     </plugin>
-</gazebo>
-
+</gazebo>-->
 
 </robot>

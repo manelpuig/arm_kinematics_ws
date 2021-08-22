@@ -1,8 +1,9 @@
 controller_manager_ns: /
 controller_list:
-  - name: arm_controller
+  - name: /pos_based_pos_traj_controller
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
+    default: true
     joints:
       - One_joint
       - Two_joint
