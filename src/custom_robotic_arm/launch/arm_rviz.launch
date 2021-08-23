@@ -1,6 +1,6 @@
 <launch>
   <arg name="rvizconfig" default="$(find custom_robotic_arm)/rviz/urdf.rviz" />
-  <param name="robot_description" textfile='$(find custom_robotic_arm)/urdf/simple_arm.urdf'/>
+  <param name="robot_description" textfile='$(find custom_robotic_arm)/urdf/custom_arm.urdf'/>
 
   <node name="jsp_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

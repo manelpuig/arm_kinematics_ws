@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: custom_robotic_arm
+    relative_path: urdf/custom_arm.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/custom_arm.srdf
+  CONFIG:
+    author_name: Manel Puig
+    author_email: manel.puig@ub.edu
+    generated_timestamp: 1629720902

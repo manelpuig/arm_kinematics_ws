@@ -1,11 +1,11 @@
 <launch>
-    <param name="robot_description" textfile="$(find custom_robotic_arm)/urdf/simple_arm.urdf"/>
+    <param name="robot_description" textfile="$(find custom_robotic_arm)/urdf/custom_arm.urdf"/>
     <!-- To specify the PID motor parameters /-->
     <!--rosparam file="$(find custom_robotic_arm)/config/gazebo_ros_control_params.yaml" command="load"/-->
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch" />
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model rubot_arm"/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model custom_arm"/>
     <rosparam file ="$(find custom_robotic_arm)/config/controller.yaml"/>
     <node name= "controller_spawner" pkg= "controller_manager" type="spawner" args="arm_controller"/>
-    <!--<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>-->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 </launch>

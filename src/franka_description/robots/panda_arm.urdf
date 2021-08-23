@@ -4,6 +4,8 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="panda">
+    <link name="dummy">
+    </link>
     <link name="panda_link0">
         <visual>
             <geometry>
@@ -35,6 +37,11 @@
         </inertial>
 
     </link>
+    <joint name="dummy_joint" type="fixed">
+        <parent link="dummy"/>
+        <child link="panda_link0"/>
+      </joint>
+
     <link name="panda_link1">
         <visual>
             <geometry>
