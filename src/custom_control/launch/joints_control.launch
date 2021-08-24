@@ -1,5 +1,3 @@
 <launch>
-    <include file="$(find custom_robotic_arm)/launch/arm_gazebo.launch" />
-    <include file="$(find custom_moveit)/launch/move_group.launch" />
-    <node name="custom_arm_control" pkg="custom_control" type="joints_control.py"/>
+    <node name="custom_arm_control" pkg="custom_control" type="joints_control.py" output="screen"/>
 </launch>
