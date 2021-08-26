@@ -52,6 +52,7 @@ from math import pi
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 from std_msgs.msg import String
 from moveit_commander.conversions import pose_to_list
+from lib_pose import *
 ## END_SUB_TUTORIAL
 
 
@@ -173,15 +174,15 @@ class MoveGroupPythonIntefaceTutorial(object):
     move_group.go(joint_goal, wait=True)
 
     # Calling ``stop()`` ensures that there is no residual movement
-    move_group.stop()
+    #move_group.stop()
 
     ## END_SUB_TUTORIAL
 
     # For testing:
     current_joints = move_group.get_current_joint_values()
-    current_pose = self.move_group.get_current_pose().pose
-    #print ("Joint Angles: ", str(current_joints))
-    return all_close(joint_goal, current_joints, 0.01)
+    current_pose = current_xyzrpy(move_group.get_current_pose())
+    #all_close(joint_goal, current_joints, 0.01)
+    return current_joints, current_pose
 
 
   def go_to_pose_goal(self,px,py,pz,roll,pitch,yaw):
